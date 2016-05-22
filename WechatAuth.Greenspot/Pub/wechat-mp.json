@@ -1,0 +1,35 @@
+﻿[
+  {
+    "name": "greenspot",
+    "appId": "wx4965c136969ac3bd",
+    "appSecret": "03fc1d6e4c140aac3a81a5803303dac5",
+    "applications": [
+      {
+        "name": "Stall.Greenspot-Pub",
+        "appId": "IZ6Q",
+        "redirectUrl": "http://stall.greenspot.com/pub/"
+      },
+      {
+        "name": "Stall.Greenspot-v1",
+        "appId": "33YJ",
+        "redirectUrl": "http://stall.greenspot.com/v1/"
+      },
+      {
+        "name": "Stall.Greenspot-Local",
+        "appId": "JIN4",
+        "redirectUrl": "http://192.168.2.235/"
+      }
+    ]
+  },
+  {
+    "name": "qin-test",
+    "appId": "wx8f0f03f3f09da028",
+    "appSecret": "d4624c36b6795d1d99dcf0547af5443d",
+    "applications": [
+      {
+        "name": "qin-Local",
+        "appId": "YKTP",
+        "redirectUrl": "http://192.168.2.235/"
+      }]
+  }
+]

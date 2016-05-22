@@ -1,0 +1,43 @@
+﻿@using Greenspot.WechatAuth;
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+</head>
+<body>
+    <div>
+        <table>
+            <thead>
+                <tr>
+                    <td>Main Module</td>
+                    <td>Sub</td>
+                    <td>Id</td>
+                    <td>Url</td>
+                </tr>
+            </thead>
+            <tbody>
+
+                @foreach (var acc in WechatMpManager.Accounts)
+                {
+                    foreach (var app in acc.Applications)
+                    {
+                        <tr>
+                            <td>@acc.Name</td>
+                            <td>@app.Name</td>
+                            <td>@app.AppId</td>
+                            <td>@app.RedirectUrl</td>
+                        </tr>
+                    }
+                }
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

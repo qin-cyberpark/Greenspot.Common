@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+This file is used by the publish/package process of your Web project. You can customize the behavior of this process
+by editing this MSBuild file. In order to learn more about this please visit http://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>D:\works\Greenspot\Greenspot.Common\WechatAuth.Greenspot\Pub</_PublishTargetUrl>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="bin/Antlr3.Runtime.dll">
+      <publishTime>05/18/2016 14:35:14</publishTime>
+    </File>
+    <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Web.Infrastructure.dll">
+      <publishTime>05/18/2016 14:35:13</publishTime>
+    </File>
+    <File Include="bin/Newtonsoft.Json.dll">
+      <publishTime>05/18/2016 14:35:16</publishTime>
+    </File>
+    <File Include="bin/roslyn/csc.exe">
+      <publishTime>05/18/2016 14:35:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.Build.Tasks.CodeAnalysis.dll">
+      <publishTime>05/18/2016 14:35:34</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.CSharp.dll">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.dll">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CodeAnalysis.VisualBasic.dll">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.CSharp.Core.targets">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/Microsoft.VisualBasic.Core.targets">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Collections.Immutable.dll">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/System.Reflection.Metadata.dll">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/vbc.exe">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/roslyn/VBCSCompiler.exe.config">
+      <publishTime>05/18/2016 14:35:35</publishTime>
+    </File>
+    <File Include="bin/System.Web.Helpers.dll">
+      <publishTime>05/18/2016 14:35:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.Mvc.dll">
+      <publishTime>05/18/2016 14:35:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.Optimization.dll">
+      <publishTime>05/18/2016 14:35:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.Razor.dll">
+      <publishTime>05/18/2016 14:35:12</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Deployment.dll">
+      <publishTime>05/18/2016 14:35:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.dll">
+      <publishTime>05/18/2016 14:35:13</publishTime>
+    </File>
+    <File Include="bin/System.Web.WebPages.Razor.dll">
+      <publishTime>05/18/2016 14:35:13</publishTime>
+    </File>
+    <File Include="bin/WebGrease.dll">
+      <publishTime>05/18/2016 14:35:14</publishTime>
+    </File>
+    <File Include="bin/WechatAuth.Greenspot.dll">
+      <publishTime>05/18/2016 20:36:50</publishTime>
+    </File>
+    <File Include="Global.asax">
+      <publishTime>05/18/2016 16:07:41</publishTime>
+    </File>
+    <File Include="packages.config">
+      <publishTime>05/18/2016 14:37:32</publishTime>
+    </File>
+    <File Include="Views/Home/Callback.cshtml">
+      <publishTime>05/18/2016 15:48:14</publishTime>
+    </File>
+    <File Include="Views/Home/List.cshtml">
+      <publishTime>05/18/2016 16:34:17</publishTime>
+    </File>
+    <File Include="Views/Web.config">
+      <publishTime>05/18/2016 16:10:46</publishTime>
+    </File>
+    <File Include="Web.config">
+      <publishTime>05/18/2016 20:11:57</publishTime>
+    </File>
+    <File Include="wechat-mp.json">
+      <publishTime>05/18/2016 20:34:33</publishTime>
+    </File>
+  </ItemGroup>
+</Project>

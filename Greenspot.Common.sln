@@ -1,0 +1,40 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Identity", "Greenspot.Identity\Greenspot.Identity.csproj", "{4322D1CD-FBF3-42F0-94D8-C86B1C321828}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WechatAuth.Greenspot", "WechatAuth.Greenspot\WechatAuth.Greenspot.csproj", "{09AEBF46-E517-4B58-82F0-3E907F2CFDFB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Common.Test", "Greenspot.Common.Test\Greenspot.Common.Test.csproj", "{F25EC20E-0DA6-4971-86D8-BC5B1DFF6A72}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Common", "Greenspot.Common\Greenspot.Common.csproj", "{CEF025D7-155C-4953-9888-06EA355AE43B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4322D1CD-FBF3-42F0-94D8-C86B1C321828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4322D1CD-FBF3-42F0-94D8-C86B1C321828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4322D1CD-FBF3-42F0-94D8-C86B1C321828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4322D1CD-FBF3-42F0-94D8-C86B1C321828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09AEBF46-E517-4B58-82F0-3E907F2CFDFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09AEBF46-E517-4B58-82F0-3E907F2CFDFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09AEBF46-E517-4B58-82F0-3E907F2CFDFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09AEBF46-E517-4B58-82F0-3E907F2CFDFB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F25EC20E-0DA6-4971-86D8-BC5B1DFF6A72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25EC20E-0DA6-4971-86D8-BC5B1DFF6A72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25EC20E-0DA6-4971-86D8-BC5B1DFF6A72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25EC20E-0DA6-4971-86D8-BC5B1DFF6A72}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEF025D7-155C-4953-9888-06EA355AE43B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEF025D7-155C-4953-9888-06EA355AE43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEF025D7-155C-4953-9888-06EA355AE43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEF025D7-155C-4953-9888-06EA355AE43B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

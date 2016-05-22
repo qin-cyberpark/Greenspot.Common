@@ -1,0 +1,18 @@
+###############
+#    ignore   #
+###############
+###############
+#    global   #
+###############
+/Pub V1/
+/Pub V2/
+###############
+#    project  #
+###############
+/.vs/
+/packages/
+/design/
+/TestResults/
+/*/bin/
+/*/obj/
+/*/node_modules
