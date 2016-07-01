@@ -8,7 +8,6 @@ namespace Greenspot.Identity
 {
     public class GreenspotUserSnsInfo
     {
-        public const string LAST_UPDATED_TIME = "LastUpdatedTime";
         public GreenspotUserSnsInfo()
         {
 

@@ -38,18 +38,22 @@ namespace Greenspot.Identity.OAuth.WeChat
         [SuppressMessage("Microsoft.Globalization", "CA1303:Do not pass literals as localized parameters",
             MessageId = "Greenspot.Owin.Security.WeChat.WeChatAuthenticationOptions.set_Caption(System.String)",
             Justification = "Not localizable.")]
-        public WeChatAuthenticationOptions(ApplicationTypes appType, ScopeTypes scopeTypes, string appId, string appSecret)
+        public WeChatAuthenticationOptions(string appId, string appSecret, 
+                                ApplicationTypes appType, ScopeTypes scopeTypes, 
+                                bool useUnionIdAsIdentity = false, bool isLoadUserInfo = false)
             : base(GetAuthenticationType(appType))
 
         {
             Caption = GetAuthenticationType(appType);
             CallbackPath = new PathString(CALLBACK_PATH);
             AuthenticationMode = AuthenticationMode.Passive;
-            ScopeType = scopeTypes;
             BackchannelTimeout = TimeSpan.FromSeconds(CALLBACK_TIMEOUT_SECOUNDS);
             AuthorizationEndpoint = GetAuthorizationEndpoint(appType);
             AppId = appId;
             AppSecret = appSecret;
+            ScopeType = scopeTypes;
+            UseUnionIdAsIdentity = useUnionIdAsIdentity;
+            IsLoadUserInfo = isLoadUserInfo;
 
             AccessTokenContainer.Register(AppId, AppSecret);
         }
@@ -128,6 +132,8 @@ namespace Greenspot.Identity.OAuth.WeChat
 
         public ScopeTypes ScopeType { get; set; }
 
+        public bool UseUnionIdAsIdentity { get; set; }
+        public bool IsLoadUserInfo { get; set; }
         /// <summary>
         /// Gets or sets the URI where the client will be redirected to authenticate.
         /// for MP default value is 'https://open.weixin.qq.com/connect/oauth2/authorize'.

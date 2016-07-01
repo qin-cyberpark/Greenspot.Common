@@ -1,4 +1,4 @@
-﻿@using Greenspot.WechatAuth;
+﻿@using Greenspot.WeChatAuth;
 @{
     Layout = null;
 }
@@ -23,7 +23,7 @@
             </thead>
             <tbody>
 
-                @foreach (var acc in WechatMpManager.Accounts)
+                @foreach (var acc in WeChatMpManager.Accounts)
                 {
                     foreach (var app in acc.Applications)
                     {

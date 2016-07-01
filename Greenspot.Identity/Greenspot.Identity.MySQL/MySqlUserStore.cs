@@ -20,7 +20,7 @@ namespace Greenspot.Identity.MySQL
         IUserTwoFactorStore<TUser, string>,
         IUserPhoneNumberStore<TUser>,
         IQueryableUserStore<TUser>
-    where TUser : IdentityUser
+    where TUser : GreenspotUser
     {
         public MySqlDatabase Database { get; private set; }
         private readonly UserRepository<TUser> _userRepository;
@@ -70,9 +70,7 @@ namespace Greenspot.Identity.MySQL
             var user = _userRepository.GetById(userId);
             if (user != null)
             {
-                user.Roles = _userRoleRepository.PopulateRoles(user.Id);
-                user.Claims = _userClaimRepository.PopulateClaims(user.Id);
-                user.Logins = _userLoginRepository.PopulateLogins(user.Id);
+                FillUserAdditionalInfo(ref user);
                 return Task.FromResult(user);
             }
 
@@ -89,9 +87,7 @@ namespace Greenspot.Identity.MySQL
             var user = _userRepository.GetByName(userName);
             if (user != null && !string.IsNullOrEmpty(user.Email))
             {
-                user.Roles = _userRoleRepository.PopulateRoles(user.Id);
-                user.Claims = _userClaimRepository.PopulateClaims(user.Id);
-                user.Logins = _userLoginRepository.PopulateLogins(user.Id);
+                FillUserAdditionalInfo(ref user);
                 return Task.FromResult(user);
             }
 
@@ -355,9 +351,7 @@ namespace Greenspot.Identity.MySQL
             var user = _userRepository.GetByEmail(email);
             if (user != null && !string.IsNullOrEmpty(user.Email))
             {
-                user.Roles = _userRoleRepository.PopulateRoles(user.Id);
-                user.Claims = _userClaimRepository.PopulateClaims(user.Id);
-                user.Logins = _userLoginRepository.PopulateLogins(user.Id);
+                FillUserAdditionalInfo(ref user);
                 return Task.FromResult(user);
             }
             return Task.FromResult(default(TUser));
@@ -488,9 +482,7 @@ namespace Greenspot.Identity.MySQL
             var user = _userRepository.GetByPhoneNumber(phone);
             if (user != null && !string.IsNullOrEmpty(user.PhoneNumber))
             {
-                user.Roles = _userRoleRepository.PopulateRoles(user.Id);
-                user.Claims = _userClaimRepository.PopulateClaims(user.Id);
-                user.Logins = _userLoginRepository.PopulateLogins(user.Id);
+
                 return Task.FromResult(user);
             }
             return Task.FromResult(default(TUser));
@@ -522,9 +514,17 @@ namespace Greenspot.Identity.MySQL
             }
         }
 
-        public Task DeleteSnsInfoAsync(TUser user)
+        public Task<SortedList<string, GreenspotUserSnsInfo>> GetSnsInfoAsync(TUser user)
         {
-            if(user == null)
+            if (user == null)
+                throw new ArgumentNullException("user");
+
+            return Task.FromResult(user.SnsInfos);
+        }
+
+        public Task RemoveSnsInfoAsync(GreenspotUser user)
+        {
+            if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
@@ -533,15 +533,31 @@ namespace Greenspot.Identity.MySQL
             return Task.FromResult(0);
         }
 
-        public Task AddSnsInfoAsync(TUser user, GreenspotUserSnsInfo snsInfo)
+        public Task AddSnsInfoAsync(GreenspotUser user, GreenspotUserSnsInfo snsInfo)
         {
             if (user == null)
             {
                 throw new ArgumentNullException("user");
             }
 
-            _userSnsInfoRepository.Insert(user.Id, snsInfo);
+            if (!user.SnsInfos.Values.Any(x => x.SnsName == snsInfo.SnsName && x.InfoKey == snsInfo.InfoKey))
+            {
+                user.SnsInfos.Add(snsInfo.InfoKey, snsInfo);
+
+
+                _userSnsInfoRepository.Insert(user.Id, snsInfo);
+
+            }
             return Task.FromResult(0);
+
+        }
+
+        private void FillUserAdditionalInfo(ref TUser user)
+        {
+            user.Roles = _userRoleRepository.PopulateRoles(user.Id);
+            user.Claims = _userClaimRepository.PopulateClaims(user.Id);
+            user.Logins = _userLoginRepository.PopulateLogins(user.Id);
+            user.SnsInfos = _userSnsInfoRepository.PopulateSnsInfos(user.Id);
         }
 
 

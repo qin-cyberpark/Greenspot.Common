@@ -21,7 +21,6 @@ namespace Greenspot.Identity
         public static GreenspotUserManager Create(IdentityFactoryOptions<GreenspotUserManager> options, IOwinContext context)
         {
             var manager = new GreenspotUserManager(new MySqlUserStore<GreenspotUser>(context.Get<GreenspotIdentityDbContext>()));
-            //var manager = new GreenspotUserManager(new MySqlUserStore<GreenspotUser>());
 
             // Configure validation logic for usernames
             manager.UserValidator = new GreenspotUserValidator(manager)
@@ -87,8 +86,6 @@ namespace Greenspot.Identity
             }
             return store.FindByPhoneNumberAsync(phone);
         }
-
-      
 
         private void ThrowIfDisposed()
         {

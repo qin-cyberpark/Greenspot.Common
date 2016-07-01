@@ -22,5 +22,9 @@ namespace Greenspot.Identity.OAuth.WeChat
         public const string Country = "greenspot:identity:claims:wechat:country";
         public const string HeadImageUrl = "greenspot:identity:claims:wechat:headimgurl";
         public const string Sex = "greenspot:identity:claims:wechat:sex";
+        public const string GroupId = "greenspot:identity:claims:wechat:groupid";
+        public const string Subscribed = "greenspot:identity:claims:wechat:subscribed";
+        public const string SubscribedTime = "greenspot:identity:claims:wechat:subscribed_time";
+        public const string LoadedTime = "greenspot:identity:claims:wechat:loaded_time";
     }
 }

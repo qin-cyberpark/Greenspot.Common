@@ -1,5 +1,6 @@
 ﻿using Greenspot.Identity.MySQL;
 using Microsoft.AspNet.Identity;
+using System.Collections.Generic;
 using System.Security.Claims;
 using System.Threading.Tasks;
 
@@ -15,7 +16,7 @@ namespace Greenspot.Identity
             // Add custom user claims here
             return userIdentity;
         }
-    }
 
-  
+        public SortedList<string, GreenspotUserSnsInfo> SnsInfos { get; set; } = new SortedList<string, GreenspotUserSnsInfo>();
+    }
 }

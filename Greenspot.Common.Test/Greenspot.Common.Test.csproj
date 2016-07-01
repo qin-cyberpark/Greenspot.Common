@@ -53,19 +53,26 @@
     </When>
     <Otherwise>
       <ItemGroup>
-        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework" />
+        <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework">
+          <Private>False</Private>
+        </Reference>
       </ItemGroup>
     </Otherwise>
   </Choose>
   <ItemGroup>
     <Compile Include="IdentityTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SuburbMatrixTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Greenspot.Comm.SuburbMatrix\Greenspot.Comm.SuburbMatrix.csproj">
+      <Project>{6129b05a-8485-4f86-8113-6a40f6128b97}</Project>
+      <Name>Greenspot.Comm.SuburbMatrix</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Greenspot.Identity\Greenspot.Identity.csproj">
       <Project>{4322d1cd-fbf3-42f0-94d8-c86b1c321828}</Project>
       <Name>Greenspot.Identity</Name>

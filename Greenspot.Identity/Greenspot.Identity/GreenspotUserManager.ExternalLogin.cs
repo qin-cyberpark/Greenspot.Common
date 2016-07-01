@@ -23,20 +23,16 @@ namespace Greenspot.Identity
             if (rslt.Succeeded)
             {
                 var store = GetMysqlUserStore();
-                //delete all
-                await store.DeleteSnsInfoAsync(user);
 
-                //store info
+                //delete all
+                await store.RemoveSnsInfoAsync(user);
+
+                //store sns info
                 foreach (var c in extInfo.ExternalIdentity.Claims)
                 {
                     await store.AddSnsInfoAsync(user, new GreenspotUserSnsInfo(
                             extInfo.Login.LoginProvider, c.Type, c.Value));
                 }
-
-                await store.AddSnsInfoAsync(user, new GreenspotUserSnsInfo(
-                        extInfo.Login.LoginProvider,
-                        GreenspotUserSnsInfo.LAST_UPDATED_TIME,
-                        DateTime.Now.ToLongTimeString()));
             }
 
             return rslt;

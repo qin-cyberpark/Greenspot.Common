@@ -32,9 +32,9 @@ namespace Greenspot.Identity.MySQL
                                      });
         }
 
-        public List<GreenspotUserSnsInfo> PopulateClaims(string userId)
+        public SortedList<string, GreenspotUserSnsInfo> PopulateSnsInfos(string userId)
         {
-            var snsInfos = new List<GreenspotUserSnsInfo>();
+            var snsInfos = new SortedList<string, GreenspotUserSnsInfo>();
             var rows = _database.Query(@"SELECT * FROM greenspot_user_snsinfos WHERE UserId=@Id",
                                          new Dictionary<string, object>{
                                             {"@Id", userId}
@@ -42,7 +42,10 @@ namespace Greenspot.Identity.MySQL
 
             foreach (var row in rows)
             {
-                snsInfos.Add(new GreenspotUserSnsInfo(row["SnsName"], row["InfoKey"], row["InfoValue"]));
+                if (!snsInfos.ContainsKey(row["InfoKey"]))
+                {
+                    snsInfos.Add(row["InfoKey"], new GreenspotUserSnsInfo(row["SnsName"], row["InfoKey"], row["InfoValue"]));
+                }
             }
 
             return snsInfos;

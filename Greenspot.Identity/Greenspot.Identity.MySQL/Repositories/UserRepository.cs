@@ -163,7 +163,6 @@ namespace Greenspot.Identity.MySQL
             user.LockoutEnabled = "1".Equals(row["LockoutEnabled"]) ? true : false;
             user.AccessFailedCount = string.IsNullOrEmpty(row["AccessFailedCount"]) ? 0 : int.Parse(row["AccessFailedCount"]);
             user.UserName = row["UserName"];
-
             return user;
         }
 

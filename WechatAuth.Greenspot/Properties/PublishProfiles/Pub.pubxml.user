@@ -6,11 +6,17 @@ by editing this MSBuild file. In order to learn more about this please visit htt
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
-    <_PublishTargetUrl>D:\works\Greenspot\Greenspot.Common\WechatAuth.Greenspot\Pub</_PublishTargetUrl>
+    <_PublishTargetUrl>D:\works\Greenspot\Greenspot.Common\WeChatAuth.Greenspot\Pub</_PublishTargetUrl>
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/Antlr3.Runtime.dll">
       <publishTime>05/18/2016 14:35:14</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.compiled">
+      <publishTime>07/01/2016 17:04:13</publishTime>
+    </File>
+    <File Include="bin/App_global.asax.dll">
+      <publishTime>07/01/2016 17:04:13</publishTime>
     </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/18/2016 14:35:35</publishTime>
@@ -82,28 +88,31 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>05/18/2016 14:35:14</publishTime>
     </File>
     <File Include="bin/WechatAuth.Greenspot.dll">
-      <publishTime>05/18/2016 20:36:50</publishTime>
+      <publishTime>07/01/2016 17:04:05</publishTime>
     </File>
     <File Include="Global.asax">
-      <publishTime>05/18/2016 16:07:41</publishTime>
+      <publishTime>05/20/2016 11:10:42</publishTime>
     </File>
     <File Include="packages.config">
-      <publishTime>05/18/2016 14:37:32</publishTime>
+      <publishTime>06/16/2016 12:40:39</publishTime>
+    </File>
+    <File Include="PrecompiledApp.config">
+      <publishTime>07/01/2016 17:04:06</publishTime>
     </File>
     <File Include="Views/Home/Callback.cshtml">
       <publishTime>05/18/2016 15:48:14</publishTime>
     </File>
     <File Include="Views/Home/List.cshtml">
-      <publishTime>05/18/2016 16:34:17</publishTime>
+      <publishTime>05/20/2016 11:10:42</publishTime>
     </File>
     <File Include="Views/Web.config">
-      <publishTime>05/18/2016 16:10:46</publishTime>
+      <publishTime>05/20/2016 11:10:42</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>05/18/2016 20:11:57</publishTime>
+      <publishTime>07/01/2016 16:34:46</publishTime>
     </File>
     <File Include="wechat-mp.json">
-      <publishTime>05/18/2016 20:34:33</publishTime>
+      <publishTime>05/19/2016 19:28:37</publishTime>
     </File>
   </ItemGroup>
 </Project>

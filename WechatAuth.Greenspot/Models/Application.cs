@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Linq;
 using System.Web;
 
@@ -26,7 +27,14 @@ namespace Greenspot.WeChatAuth
 
         public string GetRedirectUrl(string url, string code, string state)
         {
-            var result = string.Format("{0}/{1}?code={2}&state={3}", RedirectUrl.TrimEnd('/'), url.TrimStart('/'), code, state);
+            var result = string.Format("{0}/{1}?code={2}&state={3}", RedirectUrl.TrimEnd('/'), (url??"").TrimStart('/'), code, state);
+            return result;
+        }
+
+
+        public string GetRedirectUrl(string url, NameValueCollection parameters)
+        {
+            var result = string.Format("{0}/{1}?{2}", RedirectUrl.TrimEnd('/'), (url ?? "").TrimStart('/'), parameters.ToString());
             return result;
         }
     }

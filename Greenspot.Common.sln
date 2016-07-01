@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
-VisualStudioVersion = 14.0.24720.0
+VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Identity", "Greenspot.Identity\Greenspot.Identity.csproj", "{4322D1CD-FBF3-42F0-94D8-C86B1C321828}"
 EndProject
@@ -10,6 +10,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Common.Test", "Greenspot.Common.Test\Greenspot.Common.Test.csproj", "{F25EC20E-0DA6-4971-86D8-BC5B1DFF6A72}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Common", "Greenspot.Common\Greenspot.Common.csproj", "{CEF025D7-155C-4953-9888-06EA355AE43B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Greenspot.Comm.SuburbMatrix", "Greenspot.Comm.SuburbMatrix\Greenspot.Comm.SuburbMatrix.csproj", "{6129B05A-8485-4F86-8113-6A40F6128B97}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{CEF025D7-155C-4953-9888-06EA355AE43B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEF025D7-155C-4953-9888-06EA355AE43B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEF025D7-155C-4953-9888-06EA355AE43B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6129B05A-8485-4F86-8113-6A40F6128B97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6129B05A-8485-4F86-8113-6A40F6128B97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6129B05A-8485-4F86-8113-6A40F6128B97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6129B05A-8485-4F86-8113-6A40F6128B97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

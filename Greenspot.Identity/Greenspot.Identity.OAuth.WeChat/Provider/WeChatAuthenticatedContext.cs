@@ -7,6 +7,7 @@ using Microsoft.Owin.Security.Provider;
 using Newtonsoft.Json.Linq;
 using Microsoft.Owin;
 using Microsoft.Owin.Security;
+using Senparc.Weixin.MP.AdvancedAPIs.User;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 
 namespace Greenspot.Identity.OAuth.WeChat
@@ -23,18 +24,21 @@ namespace Greenspot.Identity.OAuth.WeChat
         /// <param name="user">The JSON-serialized user</param>
         /// <param name="accessToken">WeChat Access token</param>
         /// <param name="expires">Seconds until expiration</param>
-        public WeChatAuthenticatedContext(IOwinContext context, OAuthUserInfo userInfo, string accessToken, int expiresIn)
+        public WeChatAuthenticatedContext(IOwinContext context, UserInfoJson userInfo, 
+                                        OAuthUserInfo oauthUserInfo, string accessToken, int expiresIn)
             : base(context)
         {
             UserInfo = userInfo;
+            OAuthUserInfo = oauthUserInfo;
             AccessToken = accessToken;
             ExpiresIn = TimeSpan.FromSeconds(expiresIn);
         }
 
+        public UserInfoJson UserInfo { get; set; }
         /// <summary>
         /// Gets the JSON-serialized user
         /// </summary>
-        public OAuthUserInfo UserInfo { get; set; }
+        public OAuthUserInfo OAuthUserInfo { get; set; }
 
         /// <summary>
         /// Gets the WeChat access token

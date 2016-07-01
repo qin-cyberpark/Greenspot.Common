@@ -10,6 +10,7 @@ namespace Greenspot.WeChatAuth.Controllers
     {
         public ActionResult Callback(string id,string url)
         {
+            
             if (string.IsNullOrEmpty(id))
             {
                 return View();
@@ -21,7 +22,8 @@ namespace Greenspot.WeChatAuth.Controllers
                 return View();
             }
 
-            return Redirect(app.GetRedirectUrl(url, Request["code"], Request["state"]));
+            //return Redirect(app.GetRedirectUrl(url, Request["code"], Request["state"]));
+            return Redirect(app.GetRedirectUrl(url, Request.QueryString));
         }
 
         public ActionResult Refresh()

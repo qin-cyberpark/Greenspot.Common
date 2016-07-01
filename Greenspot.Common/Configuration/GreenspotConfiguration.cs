@@ -7,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace Greenspot.Configuration
 {
-    public sealed class GreenspotConfiguration : ConfigurationSection
+    public class GreenspotConfiguration : ConfigurationSection
     {
-        private GreenspotConfiguration()
+        protected GreenspotConfiguration()
         {
 
         }
@@ -197,6 +197,14 @@ namespace Greenspot.Configuration
             get
             {
                 return this["secret"] as string;
+            }
+        }
+        [ConfigurationProperty("redirectUri", IsRequired = false)]
+        public string RedirectUri
+        {
+            get
+            {
+                return this["redirectUri"] as string;
             }
         }
     }

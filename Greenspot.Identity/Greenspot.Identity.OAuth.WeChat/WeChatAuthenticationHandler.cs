@@ -18,6 +18,7 @@ using Microsoft.Owin;
 using Newtonsoft.Json;
 using Senparc.Weixin.MP.AdvancedAPIs.OAuth;
 using Senparc.Weixin.MP.AdvancedAPIs;
+using Senparc.Weixin.MP.AdvancedAPIs.User;
 
 namespace Greenspot.Identity.OAuth.WeChat
 {
@@ -85,84 +86,133 @@ namespace Greenspot.Identity.OAuth.WeChat
                 }
                 #endregion
 
-             
                 #region pull user info
-                OAuthUserInfo userInfo;
+                UserInfoJson userInfo = null;
+                OAuthUserInfo oauthUserInfo = null;
                 WeChatAuthenticatedContext context;
+
                 if (Options.ScopeType == ScopeTypes.UserInfo)
                 {
-                    userInfo = OAuthApi.GetUserInfo(Options.AppId, tokenResult.openid, Senparc.Weixin.Language.zh_CN);
+                    oauthUserInfo = OAuthApi.GetUserInfo(Options.AppId, tokenResult.openid, Senparc.Weixin.Language.zh_CN);
                 }
-                else if (Options.ScopeType == ScopeTypes.Base)
+                else if (Options.IsLoadUserInfo || Options.UseUnionIdAsIdentity)
                 {
-                    var info = UserApi.Info(Options.AppId, tokenResult.openid);
-                    userInfo = new OAuthUserInfo() {
-                        openid = tokenResult.openid,
-                        unionid = info?.unionid
-                    };
-                    
+                    userInfo = UserApi.Info(Options.AppId, tokenResult.openid);
                 }
-                else
-                {
-                    userInfo = new OAuthUserInfo();
-                }
-                context = new WeChatAuthenticatedContext(Context, userInfo, tokenResult.access_token, tokenResult.expires_in);
+
+                context = new WeChatAuthenticatedContext(Context, userInfo, oauthUserInfo,
+                                                        tokenResult.access_token, tokenResult.expires_in);
                 context.Identity = new ClaimsIdentity(Options.AuthenticationType, ClaimsIdentity.DefaultNameClaimType,
                                                          ClaimsIdentity.DefaultRoleClaimType);
 
-                if (!string.IsNullOrEmpty(userInfo.unionid))
+                //identify by unionid or openid
+                if (Options.UseUnionIdAsIdentity)
                 {
-                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userInfo.unionid,
+                    //union id
+                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userInfo?.unionid ?? oauthUserInfo?.unionid,
                         ClaimValueTypes.String, Options.AuthenticationType));
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.UnionId, userInfo.unionid,
+                }
+                else
+                {
+                    //open id
+                    context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, tokenResult.openid,
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
 
-                if (!string.IsNullOrEmpty(userInfo.openid))
+                //open id
+                context.Identity.AddClaim(new Claim(WeChatClaimTypes.OpenId, tokenResult.openid,
+                                            ClaimValueTypes.String, Options.AuthenticationType));
+
+                //union id
+                if (!string.IsNullOrEmpty(userInfo?.unionid ?? oauthUserInfo?.unionid))
                 {
-                    if (string.IsNullOrEmpty(userInfo.unionid))
-                    {
-                        context.Identity.AddClaim(new Claim(ClaimTypes.NameIdentifier, userInfo.unionid,
-                          ClaimValueTypes.String, Options.AuthenticationType));
-                    }
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.OpenId, userInfo.openid,
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.UnionId, userInfo?.unionid ?? oauthUserInfo?.unionid,
+                                ClaimValueTypes.String, Options.AuthenticationType));
+                }
+
+                //nickname
+                if (!string.IsNullOrEmpty(userInfo?.nickname ?? oauthUserInfo?.nickname))
+                {
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.NickName, userInfo?.nickname ?? oauthUserInfo?.nickname,
+                                ClaimValueTypes.String, Options.AuthenticationType));
+                }
+
+                //city
+                if (!string.IsNullOrEmpty(userInfo?.city ?? oauthUserInfo?.city))
+                {
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.City, userInfo?.city ?? oauthUserInfo?.city,
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
-                if (!string.IsNullOrEmpty(userInfo.nickname))
-                {
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.NickName, userInfo.nickname,
-                        ClaimValueTypes.String, Options.AuthenticationType));
-                }
-                if (!string.IsNullOrEmpty(userInfo.city))
-                {
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.City, userInfo.city,
-                        ClaimValueTypes.String, Options.AuthenticationType));
-                }
-                if (!string.IsNullOrEmpty(userInfo.province))
+
+                //province
+                if (!string.IsNullOrEmpty(userInfo?.province ?? oauthUserInfo?.province))
                 {
                     context.Identity.AddClaim(new Claim(WeChatClaimTypes.Province, userInfo.province,
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
-                if (!string.IsNullOrEmpty(userInfo.country))
+
+                //country
+                if (!string.IsNullOrEmpty(userInfo?.country ?? oauthUserInfo?.country))
                 {
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.Country, userInfo.country,
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.Country, userInfo?.country ?? oauthUserInfo?.country,
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
-                if (!string.IsNullOrEmpty(userInfo.headimgurl))
+
+                //headimage
+                if (!string.IsNullOrEmpty(userInfo?.headimgurl ?? oauthUserInfo?.headimgurl))
                 {
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.HeadImageUrl, userInfo.headimgurl,
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.HeadImageUrl, userInfo?.headimgurl ?? oauthUserInfo?.headimgurl,
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
-                if (userInfo.sex > 0)
+
+                //sex
+                if ((userInfo?.sex ?? 0) > 0)
                 {
                     context.Identity.AddClaim(new Claim(WeChatClaimTypes.Sex, userInfo.sex == 1 ? "M" : "F",
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
-                if (userInfo.privilege != null && userInfo.privilege.Length > 0)
+                else if ((oauthUserInfo?.sex ?? 0) > 0)
                 {
-                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.privilege, string.Join(",", userInfo.privilege),
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.Sex, oauthUserInfo.sex == 1 ? "M" : "F",
+                       ClaimValueTypes.String, Options.AuthenticationType));
+                }
+
+                //privilege
+                if (oauthUserInfo?.privilege != null && oauthUserInfo.privilege.Length > 0)
+                {
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.privilege, string.Join(",", oauthUserInfo.privilege),
                         ClaimValueTypes.String, Options.AuthenticationType));
                 }
+
+                //group
+                if (userInfo?.groupid != null)
+                {
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.GroupId, userInfo.groupid.ToString(),
+                        ClaimValueTypes.Integer32, Options.AuthenticationType));
+                }
+
+                //subscribed
+                if (userInfo?.subscribe != null)
+                {
+                    context.Identity.AddClaim(new Claim(WeChatClaimTypes.Subscribed, userInfo.subscribe == 0 ? "False" : "True",
+                        ClaimValueTypes.Boolean, Options.AuthenticationType));
+
+                    if (userInfo.subscribe == 1) 
+                    {
+                        //subscribed time
+                        if (userInfo?.subscribe_time != null)
+                        {
+                            context.Identity.AddClaim(new Claim(WeChatClaimTypes.SubscribedTime, DateTime.Now.AddMilliseconds(-userInfo.subscribe_time).ToString(),
+                                ClaimValueTypes.DateTime, Options.AuthenticationType));
+                        }
+                    }
+                }
+
+                //loaded time
+                context.Identity.AddClaim(new Claim(WeChatClaimTypes.LoadedTime, DateTime.Now.ToString(),
+                                ClaimValueTypes.DateTime, Options.AuthenticationType));
+
+
                 context.Properties = properties;
                 #endregion
 
@@ -267,7 +317,8 @@ namespace Greenspot.Identity.OAuth.WeChat
                     ClaimsIdentity grantIdentity = context.Identity;
                     if (!string.Equals(grantIdentity.AuthenticationType, context.SignInAsAuthenticationType, StringComparison.Ordinal))
                     {
-                        grantIdentity = new ClaimsIdentity(grantIdentity.Claims, context.SignInAsAuthenticationType, grantIdentity.NameClaimType, grantIdentity.RoleClaimType);
+                        grantIdentity = new ClaimsIdentity(grantIdentity.Claims, context.SignInAsAuthenticationType, 
+                                                            grantIdentity.NameClaimType, grantIdentity.RoleClaimType);
                     }
                     Context.Authentication.SignIn(context.Properties, grantIdentity);
                 }
