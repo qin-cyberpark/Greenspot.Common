@@ -8,6 +8,6 @@ namespace Greenspot.Comm.SuburbMatrix
 {
     public interface IMatrixStore
     {
-        public float 
+        //public float 
     }
 }

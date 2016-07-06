@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Greenspot.Comm.SuburbMatrix.Models;
+using Greenspot.Comm.SuburbMatrix;
 
 namespace Greenspot.Common.Test
 {
