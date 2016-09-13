@@ -10,7 +10,7 @@ namespace Greenspot.Common.Test
     public class IdentityTest
     {
         private GreenspotIdentityDbContext _context;
-        private GreenspotSignInManager _signInManager;
+        //private GreenspotSignInManager _signInManager;
         private GreenspotUserManager _userManager;
         private RoleManager<IdentityRole> _roleManager;
 
